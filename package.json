@@ -1,0 +1,11 @@
+{
+  "name": "gilbert-smallman-demo",
+  "version": "1.0.0",
+  "description": "Website concept demo for The Law Offices of Gilbert & Smallman PLLC by Par4 Technology Solutions",
+  "scripts": {
+    "start": "serve . -p ${PORT:-3000} -s"
+  },
+  "dependencies": {
+    "serve": "^14.2.3"
+  }
+}

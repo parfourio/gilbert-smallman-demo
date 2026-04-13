@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Law Offices of Gilbert & Smallman PLLC</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0a1628;
+      --navy-mid: #122040;
+      --gold: #c9a84c;
+      --gold-light: #e2c47a;
+      --white: #ffffff;
+      --off-white: #f5f3ef;
+      --gray: #8a8f9a;
+      --light-gray: #e8e6e1;
+      --text: #2c2c2c;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; color: var(--text); background: var(--white); overflow-x: hidden; }
+
+    /* ── TOP BAR ── */
+    .top-bar {
+      background: var(--navy);
+      color: var(--light-gray);
+      font-size: 0.78rem;
+      padding: 9px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      letter-spacing: 0.03em;
+    }
+    .top-bar a { color: var(--light-gray); text-decoration: none; }
+    .top-bar a:hover { color: var(--gold); }
+    .top-bar-left { display: flex; gap: 24px; align-items: center; flex-wrap: wrap; }
+    .top-bar-right { display: flex; gap: 16px; align-items: center; }
+    .top-bar .divider { color: var(--gold); opacity: 0.4; }
+    .top-bar .badge {
+      background: var(--gold); color: var(--navy);
+      padding: 4px 12px; border-radius: 2px;
+      font-weight: 600; font-size: 0.72rem;
+      letter-spacing: 0.08em; text-transform: uppercase;
+    }
+    .social-icons { display: flex; gap: 10px; }
+    .social-icons a {
+      width: 26px; height: 26px;
+      border: 1px solid rgba(201,168,76,0.3); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--gray); font-size: 0.65rem; transition: all 0.2s;
+    }
+    .social-icons a:hover { background: var(--gold); color: var(--navy); border-color: var(--gold); }
+
+    /* ── NAV ── */
+    nav {
+      background: var(--white);
+      padding: 0 40px;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 76px;
+      border-bottom: 1px solid var(--light-gray);
+      position: sticky; top: 0; z-index: 200;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.07);
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem; color: var(--navy); letter-spacing: 0.04em; line-height: 1.3;
+    }
+    .nav-logo span { color: var(--gold); }
+    .nav-logo small {
+      display: block; font-family: 'Inter', sans-serif;
+      font-size: 0.62rem; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--gray); font-weight: 500;
+    }
+    .nav-links { display: flex; gap: 28px; align-items: center; }
+    .nav-links a {
+      text-decoration: none; color: var(--navy);
+      font-size: 0.82rem; font-weight: 500;
+      letter-spacing: 0.05em; text-transform: uppercase;
+      padding: 4px 0; border-bottom: 2px solid transparent; transition: all 0.2s;
+    }
+    .nav-links a:hover { color: var(--gold); border-bottom-color: var(--gold); }
+    .nav-cta {
+      background: var(--gold); color: var(--navy) !important;
+      padding: 11px 20px !important; border-radius: 2px;
+      border-bottom: none !important; font-weight: 700 !important; letter-spacing: 0.08em !important;
+    }
+    .nav-cta:hover { background: var(--navy) !important; color: var(--white) !important; }
+
+    /* Hamburger */
+    .hamburger {
+      display: none; flex-direction: column; justify-content: center;
+      gap: 5px; cursor: pointer; padding: 4px; background: none; border: none;
+    }
+    .hamburger span {
+      display: block; width: 24px; height: 2px;
+      background: var(--navy); border-radius: 2px; transition: all 0.3s;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .mobile-menu {
+      display: none; position: fixed; top: 76px; left: 0; right: 0;
+      background: var(--white); z-index: 199; border-top: 2px solid var(--gold);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.12); padding: 20px 0;
+    }
+    .mobile-menu.open { display: block; }
+    .mobile-menu a {
+      display: block; padding: 14px 32px;
+      color: var(--navy); text-decoration: none;
+      font-size: 0.9rem; font-weight: 500;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      border-bottom: 1px solid var(--light-gray);
+    }
+    .mobile-menu a:last-child { border-bottom: none; }
+    .mobile-menu a.mobile-cta {
+      margin: 16px 24px 4px; border: none;
+      background: var(--gold); color: var(--navy) !important;
+      text-align: center; border-radius: 2px; font-weight: 700;
+    }
+    .mobile-phones {
+      padding: 16px 32px 0;
+      display: flex; flex-direction: column; gap: 8px;
+    }
+    .mobile-phones a {
+      color: var(--navy) !important; font-weight: 600;
+      letter-spacing: 0.02em; font-size: 1rem; border: none; padding: 4px 0;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 60%, #1a3060 100%);
+      min-height: 88vh; display: flex; align-items: center; position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600"><rect fill="none" stroke="%23c9a84c" stroke-width="0.3" opacity="0.07" x="50" y="50" width="700" height="500"/><circle fill="none" stroke="%23c9a84c" stroke-width="0.3" opacity="0.04" cx="400" cy="300" r="260"/></svg>') center/cover;
+    }
+    .hero-content {
+      position: relative; max-width: 1100px; margin: 0 auto;
+      padding: 80px 40px; display: grid;
+      grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; width: 100%;
+    }
+    .hero-eyebrow {
+      font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 18px; font-weight: 600;
+    }
+    .hero-title {
+      font-family: 'Playfair Display', serif; font-size: 3.4rem;
+      color: var(--white); line-height: 1.15; margin-bottom: 10px; font-weight: 700;
+    }
+    .hero-title .amp { color: var(--gold); }
+    .hero-tagline {
+      font-size: 0.72rem; letter-spacing: 0.3em; text-transform: uppercase;
+      color: rgba(201,168,76,0.7); margin-bottom: 28px;
+    }
+    .hero-desc {
+      color: rgba(255,255,255,0.72); font-size: 1rem;
+      line-height: 1.75; margin-bottom: 36px; max-width: 480px;
+    }
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--gold); color: var(--navy);
+      padding: 15px 28px; font-weight: 700; font-size: 0.8rem;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      text-decoration: none; border-radius: 2px; transition: all 0.25s; display: inline-block;
+    }
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(201,168,76,0.3); }
+    .btn-secondary {
+      background: transparent; color: var(--white);
+      padding: 15px 28px; font-weight: 600; font-size: 0.8rem;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      text-decoration: none; border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 2px; transition: all 0.25s; display: inline-block;
+    }
+    .btn-secondary:hover { border-color: var(--gold); color: var(--gold); }
+    .hero-quote {
+      margin-top: 36px; padding-top: 24px;
+      border-top: 1px solid rgba(201,168,76,0.2);
+    }
+    .hero-quote blockquote {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem; color: var(--gold-light); font-style: italic; line-height: 1.5;
+    }
+    .hero-right { display: flex; flex-direction: column; gap: 14px; }
+    .stat-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(201,168,76,0.15);
+      border-left: 3px solid var(--gold);
+      padding: 18px 22px; border-radius: 2px;
+    }
+    .stat-number {
+      font-family: 'Playfair Display', serif; font-size: 2.2rem;
+      color: var(--gold); font-weight: 700; line-height: 1;
+    }
+    .stat-label { font-size: 0.75rem; color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 0.12em; margin-top: 4px; }
+    .phones-card {
+      background: rgba(201,168,76,0.08); border: 1px solid rgba(201,168,76,0.25);
+      padding: 20px 22px; border-radius: 2px;
+    }
+    .phones-card h4 { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
+    .phone-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+    .phone-row:last-of-type { margin-bottom: 0; }
+    .phone-region { font-size: 0.72rem; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.1em; }
+    .phone-number { color: var(--white); font-weight: 600; font-size: 0.95rem; text-decoration: none; }
+    .phone-number:hover { color: var(--gold); }
+    .available-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      margin-top: 12px; font-size: 0.7rem; color: rgba(255,255,255,0.5); letter-spacing: 0.06em;
+    }
+    .dot { width: 7px; height: 7px; border-radius: 50%; background: #4ade80; display: inline-block; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+
+    /* ── AWARDS BAR ── */
+    .awards-bar { background: var(--navy-mid); padding: 32px 40px; }
+    .awards-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; justify-content: space-around; align-items: center; gap: 16px; flex-wrap: wrap;
+    }
+    .award-item { text-align: center; min-width: 80px; }
+    .award-val { font-family: 'Playfair Display', serif; font-size: 1.9rem; color: var(--gold); font-weight: 700; }
+    .award-desc { font-size: 0.68rem; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 4px; }
+    .award-divider { width: 1px; height: 36px; background: rgba(201,168,76,0.2); }
+
+    /* ── SECTIONS ── */
+    .section { padding: 80px 40px; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .section-header { text-align: center; margin-bottom: 56px; }
+    .section-eyebrow { font-size: 0.68rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 12px; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: 2.4rem; color: var(--navy); line-height: 1.2; }
+    .section-rule { width: 48px; height: 2px; background: var(--gold); margin: 16px auto 0; }
+
+    /* ── PRACTICE AREAS ── */
+    .practice-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 2px; background: var(--light-gray); border: 2px solid var(--light-gray);
+    }
+    .practice-card { background: var(--white); padding: 36px 28px; transition: all 0.3s; }
+    .practice-card:hover { background: var(--navy); }
+    .practice-card:hover .practice-icon { background: rgba(201,168,76,0.15); color: var(--gold); }
+    .practice-card:hover h3 { color: var(--white); }
+    .practice-card:hover p { color: rgba(255,255,255,0.6); }
+    .practice-card:hover .practice-link { color: var(--gold); }
+    .practice-icon {
+      width: 50px; height: 50px; background: var(--off-white); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 18px; font-size: 1.2rem; color: var(--navy); transition: all 0.3s;
+    }
+    .practice-card h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--navy); margin-bottom: 10px; transition: color 0.3s; }
+    .practice-card p { font-size: 0.85rem; color: var(--gray); line-height: 1.7; transition: color 0.3s; }
+    .practice-link { display: inline-block; margin-top: 14px; font-size: 0.73rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); text-decoration: none; transition: color 0.3s; }
+
+    /* ── WHY US ── */
+    .why-section { background: var(--navy); padding: 80px 40px; }
+    .why-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: center; }
+    .why-text .section-eyebrow { text-align: left; }
+    .why-text .section-title { color: var(--white); text-align: left; }
+    .why-text .section-rule { margin-left: 0; }
+    .why-text p { color: rgba(255,255,255,0.65); font-size: 0.95rem; line-height: 1.8; margin-top: 20px; }
+    .why-pillars { display: flex; flex-direction: column; gap: 22px; }
+    .pillar { display: flex; gap: 18px; align-items: flex-start; }
+    .pillar-num { font-family: 'Playfair Display', serif; font-size: 1.9rem; color: rgba(201,168,76,0.25); font-weight: 700; line-height: 1; min-width: 34px; padding-top: 2px; }
+    .pillar-body h4 { font-size: 0.95rem; color: var(--white); font-weight: 600; margin-bottom: 5px; }
+    .pillar-body p { font-size: 0.83rem; color: rgba(255,255,255,0.55); line-height: 1.65; }
+
+    /* ── ATTORNEYS ── */
+    .attorneys-section { padding: 80px 40px; background: var(--off-white); }
+    .attorney-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
+    .attorney-card { background: var(--white); overflow: hidden; border-radius: 2px; box-shadow: 0 2px 20px rgba(0,0,0,0.06); transition: transform 0.3s, box-shadow 0.3s; }
+    .attorney-card:hover { transform: translateY(-4px); box-shadow: 0 10px 36px rgba(0,0,0,0.12); }
+    .attorney-photo {
+      height: 220px;
+      background: linear-gradient(160deg, var(--navy-mid), var(--navy));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 3.2rem; color: rgba(201,168,76,0.25); position: relative;
+    }
+    .attorney-photo::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: var(--gold); }
+    .attorney-info { padding: 20px 18px; }
+    .attorney-name { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--navy); margin-bottom: 4px; }
+    .attorney-title { font-size: 0.66rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 10px; }
+    .attorney-bio { font-size: 0.81rem; color: var(--gray); line-height: 1.65; }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials-section { padding: 80px 40px; }
+    .testimonials-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+    .testimonial-card { background: var(--off-white); padding: 28px 24px; border-radius: 2px; border-top: 3px solid var(--gold); }
+    .quote-mark { font-family: 'Playfair Display', serif; font-size: 3.5rem; color: var(--gold); opacity: 0.2; line-height: 1; margin-bottom: -14px; }
+    .testimonial-text { font-size: 0.87rem; color: var(--text); line-height: 1.75; font-style: italic; margin-bottom: 18px; }
+    .testimonial-author { display: flex; align-items: center; gap: 10px; }
+    .author-avatar { width: 36px; height: 36px; border-radius: 50%; background: var(--navy); display: flex; align-items: center; justify-content: center; color: var(--gold); font-weight: 700; font-size: 0.8rem; }
+    .author-name { font-weight: 600; font-size: 0.83rem; color: var(--navy); }
+    .author-stars { color: var(--gold); font-size: 0.68rem; }
+
+    /* ── CTA BANNER ── */
+    .cta-banner { background: var(--gold); padding: 36px 40px; text-align: center; }
+    .cta-banner p { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--navy); margin-bottom: 18px; }
+    .btn-dark { background: var(--navy); color: var(--white); padding: 13px 30px; font-weight: 700; font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; border-radius: 2px; display: inline-block; transition: background 0.2s; }
+    .btn-dark:hover { background: var(--navy-mid); }
+
+    /* ── CONTACT ── */
+    .contact-section { padding: 80px 40px; background: var(--off-white); }
+    .contact-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.4fr; gap: 56px; align-items: start; }
+    .contact-info h2 { font-family: 'Playfair Display', serif; font-size: 1.9rem; color: var(--navy); margin-bottom: 8px; }
+    .contact-info .section-eyebrow { text-align: left; }
+    .contact-info p { color: var(--gray); font-size: 0.88rem; line-height: 1.75; margin-top: 14px; margin-bottom: 28px; }
+    .contact-detail { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 18px; }
+    .contact-detail-icon { width: 36px; height: 36px; background: var(--navy); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--gold); font-size: 0.85rem; flex-shrink: 0; }
+    .contact-detail-label { font-size: 0.66rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--gold); font-weight: 600; margin-bottom: 2px; }
+    .contact-detail-val { font-size: 0.88rem; color: var(--navy); font-weight: 500; }
+    .contact-form { background: var(--white); padding: 36px; border-radius: 2px; box-shadow: 0 4px 30px rgba(0,0,0,0.07); }
+    .contact-form h3 { font-family: 'Playfair Display', serif; font-size: 1.35rem; color: var(--navy); margin-bottom: 5px; }
+    .contact-form .sub { font-size: 0.8rem; color: var(--gray); margin-bottom: 24px; font-style: italic; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .form-group { margin-bottom: 14px; }
+    .form-group label { display: block; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--navy); margin-bottom: 5px; }
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%; padding: 11px 13px; border: 1px solid var(--light-gray); border-radius: 2px;
+      font-family: 'Inter', sans-serif; font-size: 0.87rem; color: var(--text);
+      background: var(--off-white); transition: border-color 0.2s;
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--gold); background: var(--white); }
+    .form-group textarea { height: 100px; resize: vertical; }
+    .form-submit { width: 100%; background: var(--navy); color: var(--white); padding: 14px; border: none; font-family: 'Inter', sans-serif; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; cursor: pointer; border-radius: 2px; transition: background 0.25s; margin-top: 4px; }
+    .form-submit:hover { background: var(--gold); color: var(--navy); }
+    .form-note { font-size: 0.7rem; color: var(--gray); text-align: center; margin-top: 10px; font-style: italic; }
+
+    /* ── FOOTER ── */
+    footer { background: var(--navy); color: rgba(255,255,255,0.55); padding: 56px 40px 28px; }
+    .footer-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 44px; margin-bottom: 44px; }
+    .footer-brand-logo { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--white); margin-bottom: 14px; display: block; }
+    .footer-brand p { font-size: 0.8rem; line-height: 1.7; }
+    .footer-col h4 { font-size: 0.66rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 16px; }
+    .footer-col a { display: block; color: rgba(255,255,255,0.5); text-decoration: none; font-size: 0.8rem; margin-bottom: 9px; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--gold); }
+    .footer-bottom { max-width: 1100px; margin: 0 auto; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.07); display: flex; justify-content: space-between; align-items: center; font-size: 0.73rem; flex-wrap: wrap; gap: 10px; }
+    .footer-bottom a { color: rgba(255,255,255,0.4); text-decoration: none; }
+    .footer-bottom a:hover { color: var(--gold); }
+
+    /* ── DEMO BADGE ── */
+    .demo-badge { position: fixed; bottom: 20px; right: 20px; background: var(--gold); color: var(--navy); padding: 8px 16px; border-radius: 20px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; z-index: 9999; box-shadow: 0 4px 16px rgba(201,168,76,0.4); }
+
+    /* ════════════════════════════
+       MOBILE RESPONSIVE
+    ════════════════════════════ */
+
+    /* Hide top bar on mobile */
+    @media (max-width: 900px) {
+      .top-bar { display: none; }
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+
+      .hero-content { grid-template-columns: 1fr; gap: 40px; padding: 60px 24px; }
+      .hero-title { font-size: 2.6rem; }
+      .hero-right { order: -1; flex-direction: row; flex-wrap: wrap; }
+      .stat-card { flex: 1 1 140px; }
+      .phones-card { flex: 1 1 100%; }
+      .hero-desc { max-width: 100%; }
+
+      .awards-inner { gap: 20px 10px; }
+      .award-divider { display: none; }
+
+      .section { padding: 60px 24px; }
+      .why-section { padding: 60px 24px; }
+      .attorneys-section { padding: 60px 24px; }
+      .testimonials-section { padding: 60px 24px; }
+      .contact-section { padding: 60px 24px; }
+      footer { padding: 48px 24px 24px; }
+
+      .practice-grid { grid-template-columns: 1fr 1fr; }
+      .why-grid { grid-template-columns: 1fr; gap: 40px; }
+      .attorney-grid { grid-template-columns: 1fr 1fr; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+      .section-title { font-size: 2rem; }
+    }
+
+    @media (max-width: 560px) {
+      .hero-title { font-size: 2.1rem; }
+      .practice-grid { grid-template-columns: 1fr; }
+      .attorney-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .hero-right { flex-direction: column; }
+      .hero-actions { flex-direction: column; }
+      .hero-actions a { text-align: center; }
+      .cta-banner p { font-size: 1.1rem; }
+      nav { height: 66px; }
+      .mobile-menu { top: 66px; }
+      .demo-badge { bottom: 12px; right: 12px; font-size: 0.63rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP BAR -->
+  <div class="top-bar">
+    <div class="top-bar-left">
+      <a href="tel:17863714431">Miami-Dade: 786.371.4431</a>
+      <span class="divider">|</span>
+      <a href="tel:19546617371">Broward: 954.661.7371</a>
+      <span class="divider">|</span>
+      <a href="mailto:info@gilbertandsmallman.com">info@gilbertandsmallman.com</a>
+    </div>
+    <div class="top-bar-right">
+      <div class="social-icons">
+        <a href="https://www.linkedin.com/in/harriswgilbert" title="LinkedIn" target="_blank">in</a>
+        <a href="https://www.facebook.com/Law-Offices-of-Gilbert-Smallman-PLLC-352999740385/" title="Facebook" target="_blank">f</a>
+        <a href="https://www.instagram.com/gilbertandsmallmanpllc/" title="Instagram" target="_blank">ig</a>
+        <a href="https://www.youtube.com/user/GilbertSmallman" title="YouTube" target="_blank">▶</a>
+      </div>
+      <a href="#contact" class="badge">Free Consultation</a>
+      <a href="https://gilbertandsmallman.com/es/oficinas-legales-de-gilbert-smallman/" target="_blank">Español</a>
+    </div>
+  </div>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">
+      <small>The Law Offices of</small>
+      GILBERT <span>&amp;</span> SMALLMAN
+      <small>PLLC</small>
+    </div>
+    <div class="nav-links">
+      <a href="#practice">Practice Areas</a>
+      <a href="#attorneys">The Firm</a>
+      <a href="#victories">Victories</a>
+      <a href="#contact">Resources</a>
+      <a href="#contact" class="nav-cta">Free Consultation</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-phones">
+      <a href="tel:17863714431">📞 Miami-Dade: 786.371.4431</a>
+      <a href="tel:19546617371">📞 Broward: 954.661.7371</a>
+    </div>
+    <a href="#practice" onclick="closeMobile()">Practice Areas</a>
+    <a href="#attorneys" onclick="closeMobile()">The Firm</a>
+    <a href="#victories" onclick="closeMobile()">Victories</a>
+    <a href="#contact" onclick="closeMobile()">Resources</a>
+    <a href="#contact" class="mobile-cta" onclick="closeMobile()">Free Consultation</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-text">
+        <div class="hero-eyebrow">Boutique Litigation Law Firm &nbsp;·&nbsp; Miami &amp; Broward County</div>
+        <div class="hero-title">Gilbert<br><span class="amp">&amp;</span> Smallman</div>
+        <div class="hero-tagline">Experience &nbsp;·&nbsp; Reliability &nbsp;·&nbsp; Ethics</div>
+        <p class="hero-desc">Three experienced trial attorneys fighting for your rights in Personal Injury, Civil Litigation, Probate, Criminal Defense, and DUI matters across South Florida.</p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn-primary">Get a Free Consultation</a>
+          <a href="#practice" class="btn-secondary">Our Practice Areas</a>
+        </div>
+        <div class="hero-quote">
+          <blockquote>"We Don't Run From Bullies"</blockquote>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="stat-card">
+          <div class="stat-number">10.0</div>
+          <div class="stat-label">Avvo Rating — Harris W. Gilbert</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">3</div>
+          <div class="stat-label">Experienced Trial Attorneys</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">5</div>
+          <div class="stat-label">Practice Areas Across South Florida</div>
+        </div>
+        <div class="phones-card">
+          <h4>Call Us Anytime</h4>
+          <div class="phone-row">
+            <span class="phone-region">Miami-Dade</span>
+            <a href="tel:17863714431" class="phone-number">786.371.4431</a>
+          </div>
+          <div class="phone-row">
+            <span class="phone-region">Broward</span>
+            <a href="tel:19546617371" class="phone-number">954.661.7371</a>
+          </div>
+          <div class="available-badge"><span class="dot"></span> Available 24/7 &nbsp;·&nbsp; Hablamos Español</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AWARDS BAR -->
+  <div class="awards-bar">
+    <div class="awards-inner">
+      <div class="award-item"><div class="award-val">10.0</div><div class="award-desc">Avvo Superb Rating</div></div>
+      <div class="award-divider"></div>
+      <div class="award-item"><div class="award-val">2018</div><div class="award-desc">Clients' Choice Award</div></div>
+      <div class="award-divider"></div>
+      <div class="award-item"><div class="award-val">24/7</div><div class="award-desc">Client Availability</div></div>
+      <div class="award-divider"></div>
+      <div class="award-item"><div class="award-val">4</div><div class="award-desc">Office Locations</div></div>
+      <div class="award-divider"></div>
+      <div class="award-item"><div class="award-val">★★★★★</div><div class="award-desc">39+ Client Reviews</div></div>
+    </div>
+  </div>
+
+  <!-- PRACTICE AREAS -->
+  <section class="section" id="practice">
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-eyebrow">What We Handle</div>
+        <h2 class="section-title">Our Practice Areas</h2>
+        <div class="section-rule"></div>
+      </div>
+      <div class="practice-grid">
+        <div class="practice-card">
+          <div class="practice-icon">⚖️</div>
+          <h3>Personal Injury</h3>
+          <p>If you've been injured due to someone else's negligence, we will fight for your health, wealth, and wellness — aggressively and relentlessly.</p>
+          <a href="#contact" class="practice-link">Get a Consultation →</a>
+        </div>
+        <div class="practice-card">
+          <div class="practice-icon">🏛️</div>
+          <h3>Civil Litigation</h3>
+          <p>We handle civil disputes over money involving business, partnerships, real estate, and more across Miami, Fort Lauderdale, and Tallahassee.</p>
+          <a href="#contact" class="practice-link">Get a Consultation →</a>
+        </div>
+        <div class="practice-card">
+          <div class="practice-icon">📜</div>
+          <h3>Probate &amp; Guardianship</h3>
+          <p>Guiding families through the administration and litigation of probate and trust issues, and all phases of guardianship law.</p>
+          <a href="#contact" class="practice-link">Get a Consultation →</a>
+        </div>
+        <div class="practice-card">
+          <div class="practice-icon">🛡️</div>
+          <h3>Criminal Defense</h3>
+          <p>When facing criminal charges, you need an experienced and zealous advocate. We defend your rights in State and Federal court in Florida.</p>
+          <a href="#contact" class="practice-link">Get a Consultation →</a>
+        </div>
+        <div class="practice-card">
+          <div class="practice-icon">🚗</div>
+          <h3>DUI &amp; DWI Defense</h3>
+          <p>Both your freedom and your right to drive are on the line. We have the experience to fight DUI charges and protect what matters most to you.</p>
+          <a href="#contact" class="practice-link">Get a Consultation →</a>
+        </div>
+        <div class="practice-card" style="background:var(--navy);">
+          <div class="practice-icon" style="background:rgba(201,168,76,0.15);color:var(--gold);">📞</div>
+          <h3 style="color:var(--white);">Not Sure Where You Fit?</h3>
+          <p style="color:rgba(255,255,255,0.6);">Call us or send a message and we'll help you understand your options. Consultations are always free.</p>
+          <a href="#contact" class="practice-link">Contact Us →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section class="why-section">
+    <div class="why-grid">
+      <div class="why-text">
+        <div class="section-eyebrow">Why Gilbert &amp; Smallman</div>
+        <h2 class="section-title" style="color:var(--white);">Boutique Attention.<br>Trial-Ready Muscle.</h2>
+        <div class="section-rule" style="margin-left:0;"></div>
+        <p>We're a boutique firm — which means your case doesn't get handed off to a paralegal and forgotten. You get direct access to experienced trial attorneys who are available 24/7 and take their ethical obligations as seriously as their wins.</p>
+      </div>
+      <div class="why-pillars">
+        <div class="pillar">
+          <div class="pillar-num">01</div>
+          <div class="pillar-body"><h4>Client Communication</h4><p>We make ourselves available 24/7. If you have a question, we want to answer it. You'll always know where your case stands.</p></div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-num">02</div>
+          <div class="pillar-body"><h4>Trial Experience</h4><p>We have the trial experience you need — and we're not afraid to use it. We go to court when that's what it takes to win.</p></div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-num">03</div>
+          <div class="pillar-body"><h4>Ethics &amp; Integrity</h4><p>We take our ethical obligations seriously in every matter. You'll always get straight answers and honest counsel.</p></div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-num">04</div>
+          <div class="pillar-body"><h4>Bilingual Service</h4><p>Hablamos español. We proudly serve South Florida's Spanish-speaking community with the same dedication.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ATTORNEYS -->
+  <section class="attorneys-section" id="attorneys">
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-eyebrow">The Team</div>
+        <h2 class="section-title">Meet Our Attorneys</h2>
+        <div class="section-rule"></div>
+      </div>
+      <div class="attorney-grid">
+        <div class="attorney-card">
+          <div class="attorney-photo">⚖</div>
+          <div class="attorney-info">
+            <div class="attorney-name">Harris W. Gilbert</div>
+            <div class="attorney-title">Attorney · Founder</div>
+            <div class="attorney-bio">Avvo-rated 10.0 and a Clients' Choice award winner, Harris brings decades of trial experience across criminal defense, personal injury, and civil litigation.</div>
+          </div>
+        </div>
+        <div class="attorney-card">
+          <div class="attorney-photo">⚖</div>
+          <div class="attorney-info">
+            <div class="attorney-name">Andrew J. Smallman</div>
+            <div class="attorney-title">Attorney · Partner</div>
+            <div class="attorney-bio">Clients consistently call Andrew's advocacy "amazing" and "an understatement." He brings passionate representation to every matter he handles.</div>
+          </div>
+        </div>
+        <div class="attorney-card">
+          <div class="attorney-photo">⚖</div>
+          <div class="attorney-info">
+            <div class="attorney-name">Ryan Tables</div>
+            <div class="attorney-title">Attorney</div>
+            <div class="attorney-bio">A skilled litigator contributing to the firm's broad practice across South Florida courts, fighting for clients' rights at every stage.</div>
+          </div>
+        </div>
+        <div class="attorney-card">
+          <div class="attorney-photo">⚖</div>
+          <div class="attorney-info">
+            <div class="attorney-name">Gloria Cancino Chacon</div>
+            <div class="attorney-title">Attorney · Español</div>
+            <div class="attorney-bio">A dedicated advocate for Spanish-speaking clients throughout South Florida, ensuring every client receives full access to justice in their language.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials-section" id="victories">
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-eyebrow">Client Stories</div>
+        <h2 class="section-title">What Our Clients Say</h2>
+        <div class="section-rule"></div>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="quote-mark">"</div>
+          <p class="testimonial-text">I have been a client of Gilbert & Smallman for about 11 years now. That should tell you enough. I've never had to look anywhere else.</p>
+          <div class="testimonial-author"><div class="author-avatar">FH</div><div><div class="author-name">Fatimah Haq</div><div class="author-stars">★★★★★</div></div></div>
+        </div>
+        <div class="testimonial-card">
+          <div class="quote-mark">"</div>
+          <p class="testimonial-text">Mr. Andrew Smallman has my highest recommendation. To say he is amazing is a complete understatement. Truly exceptional advocacy.</p>
+          <div class="testimonial-author"><div class="author-avatar">LP</div><div><div class="author-name">Lory Perez</div><div class="author-stars">★★★★★</div></div></div>
+        </div>
+        <div class="testimonial-card">
+          <div class="quote-mark">"</div>
+          <p class="testimonial-text">Harris and his team did a killer job on my case. He provided me with updates every step of the way and truly fought for the best result.</p>
+          <div class="testimonial-author"><div class="author-avatar">A</div><div><div class="author-name">Anthony</div><div class="author-stars">★★★★★</div></div></div>
+        </div>
+        <div class="testimonial-card">
+          <div class="quote-mark">"</div>
+          <p class="testimonial-text">I was in a severe car accident with traumatic injuries and mountains of medical bills. Gilbert & Smallman handled everything and fought for me.</p>
+          <div class="testimonial-author"><div class="author-avatar">N</div><div><div class="author-name">Natalka</div><div class="author-stars">★★★★★</div></div></div>
+        </div>
+        <div class="testimonial-card">
+          <div class="quote-mark">"</div>
+          <p class="testimonial-text">Harris Gilbert is a fantastic defense attorney. I had a family member falsely accused — he worked tirelessly and got the result our family needed.</p>
+          <div class="testimonial-author"><div class="author-avatar">JG</div><div><div class="author-name">Jeffrey Giordano</div><div class="author-stars">★★★★★</div></div></div>
+        </div>
+        <div class="testimonial-card">
+          <div class="quote-mark">"</div>
+          <p class="testimonial-text">I don't usually write reviews, but Mr. Smallman saved my life. My charges were serious — he fought for me and I will always be grateful.</p>
+          <div class="testimonial-author"><div class="author-avatar">BJ</div><div><div class="author-name">Belinda James</div><div class="author-stars">★★★★★</div></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BANNER -->
+  <div class="cta-banner">
+    <p>Ready to talk? We offer a free, no-obligation consultation.</p>
+    <a href="#contact" class="btn-dark">Schedule Your Free Consultation</a>
+  </div>
+
+  <!-- CONTACT -->
+  <section class="contact-section" id="contact">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="section-eyebrow">Get in Touch</div>
+        <h2>We're Ready to Fight For You</h2>
+        <p>No matter what legal situation you're facing, the Law Offices of Gilbert & Smallman will review your case and discuss your options — with complete confidentiality, at no cost to you.</p>
+        <div class="contact-detail">
+          <div class="contact-detail-icon">📞</div>
+          <div><div class="contact-detail-label">Miami-Dade</div><div class="contact-detail-val">786.371.4431</div></div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-detail-icon">📞</div>
+          <div><div class="contact-detail-label">Broward County</div><div class="contact-detail-val">954.661.7371</div></div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-detail-icon">✉️</div>
+          <div><div class="contact-detail-label">Email</div><div class="contact-detail-val">info@gilbertandsmallman.com</div></div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-detail-icon">🕐</div>
+          <div><div class="contact-detail-label">Availability</div><div class="contact-detail-val">24 / 7 &nbsp;·&nbsp; Hablamos Español</div></div>
+        </div>
+      </div>
+      <div class="contact-form">
+        <h3>Free Consultation</h3>
+        <p class="sub">All inquiries are 100% confidential.</p>
+        <div class="form-row">
+          <div class="form-group"><label>First Name</label><input type="text" placeholder="John" /></div>
+          <div class="form-group"><label>Last Name</label><input type="text" placeholder="Smith" /></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Phone</label><input type="tel" placeholder="(305) 000-0000" /></div>
+          <div class="form-group"><label>Email</label><input type="email" placeholder="you@email.com" /></div>
+        </div>
+        <div class="form-group">
+          <label>Practice Area</label>
+          <select>
+            <option>Select a practice area…</option>
+            <option>Personal Injury</option>
+            <option>Civil Litigation</option>
+            <option>Probate &amp; Guardianship</option>
+            <option>Criminal Defense</option>
+            <option>DUI / DWI Defense</option>
+            <option>Other / Not Sure</option>
+          </select>
+        </div>
+        <div class="form-group"><label>Case Details</label><textarea placeholder="Briefly describe your situation…"></textarea></div>
+        <button class="form-submit">Schedule My Free Consultation</button>
+        <p class="form-note">Sending this form does not create an attorney-client relationship.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="footer-brand-logo">GILBERT &amp; SMALLMAN PLLC</span>
+        <p>A boutique litigation law firm dedicated to fighting for the rights of individuals and businesses across South Florida. Available 24/7. Hablamos Español.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Practice Areas</h4>
+        <a href="#practice">Personal Injury</a>
+        <a href="#practice">Civil Litigation</a>
+        <a href="#practice">Probate &amp; Guardianship</a>
+        <a href="#practice">Criminal Defense</a>
+        <a href="#practice">DUI &amp; DWI Defense</a>
+      </div>
+      <div class="footer-col">
+        <h4>The Firm</h4>
+        <a href="#attorneys">Harris W. Gilbert</a>
+        <a href="#attorneys">Andrew J. Smallman</a>
+        <a href="#attorneys">Ryan Tables</a>
+        <a href="#attorneys">Gloria Cancino Chacon</a>
+        <a href="#victories">Client Victories</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="tel:17863714431">Miami-Dade: 786.371.4431</a>
+        <a href="tel:19546617371">Broward: 954.661.7371</a>
+        <a href="mailto:info@gilbertandsmallman.com">info@gilbertandsmallman.com</a>
+        <a href="#contact">Free Consultation</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 The Law Offices of Gilbert &amp; Smallman PLLC. All rights reserved.</span>
+      <span><a href="#">Privacy Policy</a> &nbsp;·&nbsp; <a href="#">Terms &amp; Conditions</a></span>
+    </div>
+  </footer>
+
+  <!-- DEMO BADGE -->
+  <div class="demo-badge">Concept by Par4 Technology Solutions</div>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      mobileMenu.classList.toggle('open');
+    });
+
+    function closeMobile() {
+      hamburger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+    }
+
+    // Close mobile menu on scroll
+    window.addEventListener('scroll', () => {
+      if (mobileMenu.classList.contains('open')) closeMobile();
+    });
+  </script>
+</body>
+</html>
