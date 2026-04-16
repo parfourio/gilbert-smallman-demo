@@ -276,10 +276,13 @@
     .attorney-card { background: var(--white); overflow: hidden; border-radius: 2px; box-shadow: 0 2px 20px rgba(0,0,0,0.06); transition: transform 0.3s, box-shadow 0.3s; }
     .attorney-card:hover { transform: translateY(-4px); box-shadow: 0 10px 36px rgba(0,0,0,0.12); }
     .attorney-photo {
-      height: 220px;
+      height: 260px;
       background: linear-gradient(160deg, var(--navy-mid), var(--navy));
-      display: flex; align-items: center; justify-content: center;
-      font-size: 3.2rem; color: rgba(201,168,76,0.25); position: relative;
+      position: relative; overflow: hidden;
+    }
+    .attorney-photo img {
+      width: 100%; height: 100%; object-fit: cover; object-position: center top;
+      display: block;
     }
     .attorney-photo::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: var(--gold); }
     .attorney-info { padding: 20px 18px; }
@@ -608,7 +611,7 @@
       </div>
       <div class="attorney-grid">
         <div class="attorney-card">
-          <div class="attorney-photo">⚖</div>
+          <div class="attorney-photo"><img src="https://gilbertandsmallman.com/wp-content/uploads/2022/01/Harris-W.-Gilbert.jpg" alt="Harris W. Gilbert" /></div>
           <div class="attorney-info">
             <div class="attorney-name">Harris W. Gilbert</div>
             <div class="attorney-title">Attorney · Founder</div>
@@ -616,7 +619,7 @@
           </div>
         </div>
         <div class="attorney-card">
-          <div class="attorney-photo">⚖</div>
+          <div class="attorney-photo"><img src="https://gilbertandsmallman.com/wp-content/uploads/2022/01/Andrew-J.-Smallman.jpg" alt="Andrew J. Smallman" /></div>
           <div class="attorney-info">
             <div class="attorney-name">Andrew J. Smallman</div>
             <div class="attorney-title">Attorney · Partner</div>
@@ -624,7 +627,7 @@
           </div>
         </div>
         <div class="attorney-card">
-          <div class="attorney-photo">⚖</div>
+          <div class="attorney-photo"><img src="https://gilbertandsmallman.com/wp-content/uploads/2022/01/Ryan-Tables.jpg" alt="Ryan Tables" /></div>
           <div class="attorney-info">
             <div class="attorney-name">Ryan Tables</div>
             <div class="attorney-title">Attorney</div>
@@ -632,7 +635,7 @@
           </div>
         </div>
         <div class="attorney-card">
-          <div class="attorney-photo">⚖</div>
+          <div class="attorney-photo"><img src="https://gilbertandsmallman.com/wp-content/uploads/2023/07/Gloria-Cancino-Chacon.jpg" alt="Gloria Cancino Chacon" /></div>
           <div class="attorney-info">
             <div class="attorney-name">Gloria Cancino Chacon</div>
             <div class="attorney-title">Attorney · Español</div>
