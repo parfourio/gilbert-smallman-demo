@@ -385,6 +385,8 @@
       .practice-grid { grid-template-columns: 1fr 1fr; }
       .why-grid { grid-template-columns: 1fr; gap: 40px; }
       .attorney-grid { grid-template-columns: 1fr 1fr; }
+      .attorney-photo { height: 180px; }
+      .attorney-photo img { object-position: center 15%; }
       .testimonials-grid { grid-template-columns: 1fr; }
       .contact-grid { grid-template-columns: 1fr; gap: 40px; }
       .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
@@ -394,7 +396,8 @@
     @media (max-width: 560px) {
       .hero-title { font-size: 2.1rem; }
       .practice-grid { grid-template-columns: 1fr; }
-      .attorney-grid { grid-template-columns: 1fr; }
+      .attorney-grid { grid-template-columns: 1fr 1fr; }
+      .attorney-photo { height: 160px; }
       .form-row { grid-template-columns: 1fr; }
       .footer-grid { grid-template-columns: 1fr; }
       .hero-right { flex-direction: column; }
