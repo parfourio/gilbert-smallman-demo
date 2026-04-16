@@ -67,6 +67,7 @@
     .nav-logo {
       font-family: 'Playfair Display', serif;
       font-size: 1.05rem; color: var(--navy); letter-spacing: 0.04em; line-height: 1.3;
+      text-decoration: none; cursor: pointer;
     }
     .nav-logo span { color: var(--gold); }
     .nav-logo small {
@@ -420,11 +421,11 @@
 
   <!-- NAV -->
   <nav>
-    <div class="nav-logo">
+    <a href="#" class="nav-logo">
       <small>The Law Offices of</small>
       GILBERT <span>&amp;</span> SMALLMAN
       <small>PLLC</small>
-    </div>
+    </a>
     <div class="nav-links">
       <a href="#practice">Practice Areas</a>
       <a href="#attorneys">The Firm</a>
@@ -794,6 +795,23 @@
     // Close mobile menu on scroll
     window.addEventListener('scroll', () => {
       if (mobileMenu.classList.contains('open')) closeMobile();
+    });
+
+    // Smooth scroll handler for all anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+      link.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        const id = href.slice(1);
+        closeMobile();
+        e.preventDefault();
+        if (!id) { window.scrollTo({ top: 0, behavior: 'smooth' }); return; }
+        const el = document.getElementById(id);
+        if (!el) return;
+        const navEl = document.querySelector('nav');
+        const navH = navEl ? navEl.getBoundingClientRect().height : 68;
+        const top = el.getBoundingClientRect().top + window.scrollY - navH;
+        window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+      });
     });
   </script>
 </body>
